@@ -1,0 +1,4 @@
+venv
+ecommerce/db.sqlite
+ecommerce/media
+.idea
