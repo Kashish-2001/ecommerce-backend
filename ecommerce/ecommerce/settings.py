@@ -47,9 +47,10 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'fcd36e1c89a6.ngrok.io',
-    'eaa1b2cf5c0d.ngrok.io',
+    # '127.0.0.1',
+    # 'fcd36e1c89a6.ngrok.io',
+    # 'eaa1b2cf5c0d.ngrok.io',
+    '*',
 ]
 
 

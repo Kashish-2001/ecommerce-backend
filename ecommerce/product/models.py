@@ -5,16 +5,17 @@ from ecommerce.utils import unique_slug_generator
 
 class Product(models.Model):
     CATEGORIES_CHOICES = [
-        ('WOMEN', 'Women'),
-        ('MEN', 'Men'),
-        ('KIDS', 'Kids'),
+        ('Women', 'Women'),
+        ('Men', 'Men'),
+        ('Unisex', 'Unisex'),
+        ('Kids', 'Kids'),
     ]
 
     SUB_CATEGORIES_CHOICES = [
-        ('T-SHIRT', 'T-shirt'),
-        ('SHIRT', 'Shirt'),
-        ('JEANS', 'Jeans'),
-        ('ACCESSORIES', 'Accessories'),
+        ('T-shirt', 'T-shirt'),
+        ('Shirt', 'Shirt'),
+        ('Jeans', 'Jeans'),
+        ('Accessories', 'Accessories'),
     ]
 
     name = models.CharField(max_length=200) # unique or not??
