@@ -13,10 +13,14 @@ class CustomUserAdmin(UserAdmin):
         (
             'User Detail',
             {
-                'fields': ('phone',)
+                'fields': ('name', 'phone',)
             }
         )
     )
 
+@admin.register(CustomUser)
+class CustomAdminUser(admin.ModelAdmin):
+    list_display = ("name", "phone","is_staff", "is_superuser")
 
-admin.site.register(CustomUser, CustomUserAdmin)
+
+# admin.site.register(CustomUser, CustomUserAdmin)

@@ -7,16 +7,16 @@ class ProductImageAdmin(admin.StackedInline):
 
 
 @admin.register(Product)
-class PostAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageAdmin]
+    list_display = ("name", "actual_price", "selling_price")
 
     class Meta:
         model = Product
 
 
-# @admin.register(ProductImage)
-# class PostImageAdmin(admin.ModelAdmin):
-#     pass
-
-
-admin.site.register(ProductImage)
+@admin.register(ProductImage)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ("product",)
+    class Meta:
+        model = ProductImage
