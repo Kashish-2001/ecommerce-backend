@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .serializers import ProductSerializer
-from .models import Product
+from .models import Product, ProductImage
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status

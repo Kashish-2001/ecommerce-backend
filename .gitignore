@@ -4,3 +4,4 @@ ecommerce/media
 .idea
 db.sqlite
 media
+ecommerce_db

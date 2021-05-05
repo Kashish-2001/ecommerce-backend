@@ -13,9 +13,7 @@ class CustomUserAdmin(UserAdmin):
         (
             'User Detail',
             {
-                'fields': (
-                    'phone',
-                )
+                'fields': ('phone',)
             }
         )
     )
