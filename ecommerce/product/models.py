@@ -5,20 +5,31 @@ from ecommerce.utils import unique_slug_generator
 
 class Product(models.Model):
     CATEGORIES_CHOICES = [
+        ('WOMEN', 'Women'),
+        ('MEN', 'Men'),
+        ('KIDS', 'Kids'),
+    ]
+
+    SUB_CATEGORIES_CHOICES = [
         ('T-SHIRT', 'T-shirt'),
         ('SHIRT', 'Shirt'),
         ('JEANS', 'Jeans'),
         ('ACCESSORIES', 'Accessories'),
     ]
+
     name = models.CharField(max_length=200) # unique or not??
     actual_price = models.PositiveIntegerField()
     selling_price = models.PositiveIntegerField(null=True, blank=True)
 
-    size = models.CharField(
+    category = models.CharField(
         max_length=50,
         choices=CATEGORIES_CHOICES,
-        default="S",
     )
+    sub_category = models.CharField(
+        max_length=50,
+        choices=SUB_CATEGORIES_CHOICES,
+    )
+
     description = models.TextField()
     thumbnail = models.ImageField(upload_to='thumbnail/', default=None)
     slug = models.SlugField(max_length=250, null=True, blank=True)
@@ -46,8 +57,8 @@ pre_save.connect(slug_generator, sender=Product)
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE, related_name="images")
-    images = models.FileField(upload_to='product_images/')
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE, related_name="image")
+    images = models.ImageField(upload_to='product_images/')
 
     def __str__(self):
         return self.product.name

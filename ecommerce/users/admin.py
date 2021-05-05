@@ -4,23 +4,28 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth.admin import UserAdmin
 
 
-class CustomUserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin, admin.ModelAdmin):
     model = CustomUser
     add_form = CustomUserCreationForm
+    list_display = ("username", "phone", "is_staff", "is_superuser")
 
     fieldsets = (
-        *UserAdmin.fieldsets,
         (
             'User Detail',
             {
                 'fields': ('name', 'phone',)
             }
-        )
+        ),
+        *UserAdmin.fieldsets
+
     )
 
-@admin.register(CustomUser)
-class CustomAdminUser(admin.ModelAdmin):
-    list_display = ("name", "phone","is_staff", "is_superuser")
+    # fieldsets = (
+    #     (None, {'fields': ('name', 'phone',)}),
+    # )
+
+# @admin.register(CustomUser)
+# class CustomAdminUser):
 
 
-# admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin,)

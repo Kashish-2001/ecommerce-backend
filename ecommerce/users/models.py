@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
 # Default username
 def default_username(sender, instance, *args, **kwargs):
     if not instance.username:
-        instance.username = instance.name + instance.id
+        instance.username = f'{instance.name}_{instance.phone}'
 
 
 pre_save.connect(default_username, sender=CustomUser)
