@@ -2,3 +2,5 @@ venv
 ecommerce/db.sqlite
 ecommerce/media
 .idea
+db.sqlite
+media
