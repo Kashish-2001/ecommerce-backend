@@ -8,7 +8,7 @@ class Product(models.Model):
         ('Women', 'Women'),
         ('Men', 'Men'),
         ('Unisex', 'Unisex'),
-        ('Kids', 'Kids'),
+        # ('Kids', 'Kids'),
     ]
 
     SUB_CATEGORIES_CHOICES = [
@@ -18,9 +18,10 @@ class Product(models.Model):
         ('Accessories', 'Accessories'),
     ]
 
-    name = models.CharField(max_length=200) # unique or not??
+    name = models.CharField(max_length=200)
     actual_price = models.PositiveIntegerField()
     selling_price = models.PositiveIntegerField(null=True, blank=True)
+    brand = models.CharField(max_length=200)
 
     category = models.CharField(
         max_length=50,
