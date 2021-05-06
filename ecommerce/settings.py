@@ -15,7 +15,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000'
 ]
 
-CORS_ALLOW_ALL_ORIGINS= True
+CORS_ALLOW_ALL_ORIGINS = True
 
 ALLOWED_HOSTS = []
 
@@ -44,30 +44,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-<<<<<<< HEAD:ecommerce/settings.py
-=======
-
-CORS_ORIGIN_WHITELIST = (
-    # 'http://localhost:8000',
-    # 'http://localhost:8000',
-    # 'http://127.0.0.1:8000',
-    # 'http://localhost:3000',
-    # 'https://ecommerce-frontend-atc'
-    '*'
-)
-
-
-CORS_ALLOWED_ORIGINS = [
-    # "https://example.com",
-    # "https://sub.example.com",
-    # "http://localhost:8080",
-    # "http://127.0.0.1:9000",
-    # 'https://ecommerce-frontend-atc'
-    '*'
-]
-
 ALLOWED_HOSTS = [
-
     # 'https://ecommerce-frontend-atc.vercel.app/',
     # '127.0.0.1',
     # 'fcd36e1c89a6.ngrok.io',
@@ -76,7 +53,6 @@ ALLOWED_HOSTS = [
 ]
 
 
->>>>>>> 7d4686e9799b826a1130af2c13408a58ed145f8c:ecommerce/ecommerce/settings.py
 ROOT_URLCONF = 'ecommerce.urls'
 
 TEMPLATES = [
