@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-@89w=)aq#ikntyz&1@ku6rxpt4^xafw8u%%64&7&d=0-(x#ln5
 DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
-    'https://ecommerce-frontend-atc.vercel.app/',
+    'https://ecommerce-frontend-atc.vercel.app',
     'http://localhost:3000'
 ]
 
@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     'product',
     'users',
     'rest_framework',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
