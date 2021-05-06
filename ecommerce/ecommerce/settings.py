@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'product',
     'users',
     'rest_framework',
@@ -40,13 +41,27 @@ MIDDLEWARE = [
 
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8000',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://localhost:3000',
+    # 'http://localhost:8000',
+    # 'http://localhost:8000',
+    # 'http://127.0.0.1:8000',
+    # 'http://localhost:3000',
+    # 'https://ecommerce-frontend-atc'
+    '*'
 )
 
+
+CORS_ALLOWED_ORIGINS = [
+    # "https://example.com",
+    # "https://sub.example.com",
+    # "http://localhost:8080",
+    # "http://127.0.0.1:9000",
+    # 'https://ecommerce-frontend-atc'
+    '*'
+]
+
 ALLOWED_HOSTS = [
+
+    # 'https://ecommerce-frontend-atc.vercel.app/',
     # '127.0.0.1',
     # 'fcd36e1c89a6.ngrok.io',
     # 'eaa1b2cf5c0d.ngrok.io',
@@ -107,8 +122,6 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -128,7 +141,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
-
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
