@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import Product, ProductImage
+from .models import Product, ProductImage, Category, SubCategory
 
 
-class ProductImageAdmin(admin.StackedInline):
+class ProductImageInline(admin.StackedInline):
     model = ProductImage
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    inlines = [ProductImageAdmin]
+    inlines = [ProductImageInline]
     list_display = ("name", "actual_price", "selling_price")
 
     class Meta:
@@ -16,7 +16,24 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(ProductImage)
-class PostAdmin(admin.ModelAdmin):
+class ProductImageAdmin(admin.ModelAdmin):
     list_display = ("product",)
     class Meta:
         model = ProductImage
+
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+
+    class Meta:
+        model = Category
+
+
+@admin.register(SubCategory)
+class SubcategoryAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+
+    class Meta:
+        model = SubCategory

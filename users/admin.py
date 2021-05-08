@@ -29,3 +29,5 @@ class CustomUserAdmin(UserAdmin, admin.ModelAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin,)
+
+

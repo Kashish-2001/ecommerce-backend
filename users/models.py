@@ -18,4 +18,3 @@ def default_username(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(default_username, sender=CustomUser)
-
