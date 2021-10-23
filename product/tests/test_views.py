@@ -1,53 +1,58 @@
-from django.test import TestCase
 from rest_framework.reverse import reverse
 from rest_framework.test import APIClient
-
+import pytest
 from product.models import SubCategory, Category, Product
 
 
-class TestProductAPIView(TestCase):
-    def setUp(self):
-        self.client = APIClient()
-        print(self.client, "self.client")
+@pytest.fixture
+def api_client():
+    return APIClient()
 
-        self.sub_category1 = SubCategory.objects.create(name="Shirt")
-        self.sub_category2 = SubCategory.objects.create(name="T-Shirt")
 
-        self.category = Category.objects.create(name="Men")
-        self.category.subcategory.add(self.sub_category1)
-        self.category.save()
+@pytest.fixture
+def detail_view(db):
+    sub_category1 = SubCategory.objects.create(name="Shirt")
+    sub_category2 = SubCategory.objects.create(name="T-Shirt")
 
-        self.product = Product.objects.create(
-            name="levis Blue Tshirt",
-            actual_price=999,
-            brand="Levis",
-            description="Sizes available - Small, Medium, Large",
-        )
+    category = Category.objects.create(name="Men")
+    category.subcategory.add(sub_category1)
+    category.save()
 
-        self.product.category.add(self.category)
-        self.product.subcategory.add(self.sub_category2)
-        self.product.save()
+    product = Product.objects.create(
+        name="levis Blue Tshirt",
+        actual_price=999,
+        brand="Levis",
+        description="Sizes available - Small, Medium, Large",
+    )
 
-    def test_product_detail_works(self):
-        slug = self.product.slug
-        url = reverse("product", kwargs={"slug_text": slug})
-        response = self.client.get(url)
+    product.category.add(category)
+    product.subcategory.add(sub_category2)
+    product.save()
+    return product
 
-        assert response.json() != None
-        assert response.status_code == 200
-        assert response.json()["name"] == self.product.name
 
-        assert (
-                response.json()["category"][0]["name"]
-                == self.product.category.all().last().name
-        )
-        assert (
-                response.json()["subcategory"][0]["name"]
-                == self.product.subcategory.all().last().name
-        )
+def test_product_detail_works(api_client, detail_view):
+    product = detail_view
+    slug = product.slug
+    url = reverse("product", kwargs={"slug_text": slug})
+    response = api_client.get(url)
 
-    def test_product_detail_failure(self):
-        slug = "vfgjkgykjp9z"
-        url = reverse("product", kwargs={"slug_text": slug})
-        response = self.client.get(url)
-        assert response.status_code == 404
+    assert response.json() != None
+    assert response.status_code == 200
+    assert response.json()["name"] == product.name
+
+    assert (
+            response.json()["category"][0]["name"]
+            == product.category.all().last().name
+    )
+    assert (
+            response.json()["subcategory"][0]["name"]
+            == product.subcategory.all().last().name
+    )
+
+
+def test_product_detail_failure(api_client, detail_view):
+    slug = "vfgjkgykjp9z"
+    url = reverse("product", kwargs={"slug_text": slug})
+    response = api_client.get(url)
+    assert response.status_code == 404
