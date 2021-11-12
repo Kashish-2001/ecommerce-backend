@@ -14,7 +14,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 class LargeResultsSetPagination(PageNumberPagination):
     page_size = 9
-    page_size_query_param = 'per_page'
+    page_size_query_param = "per_page"
 
 
 class ProductList(ListAPIView):
@@ -22,7 +22,8 @@ class ProductList(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["name", "brand", 'category__name', 'subcategory__name', 'slug']
+    filterset_fields = ["name", "brand", "category__name", "subcategory__name", "slug"]
+
 
 # SLUG
 class ProductDetail(APIView):
